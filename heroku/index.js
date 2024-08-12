@@ -38,6 +38,41 @@ app.get(["/facebook", "/instagram"], function (req, res) {
 });
 
 app.post("/facebook", async (req, res) => {
+  console.log("Facebook request body:", req.body);
+
+  if (!req.isXHubValid()) {
+    console.log(
+      "Warning - request header X-Hub-Signature not present or invalid"
+    );
+    res.sendStatus(401);
+    return;
+  }
+
+  console.log("request header X-Hub-Signature validated");
+  // Process the Facebook updates here
+  res.status(200);
+  received_updates.unshift(req.body);
+  sendMessage();
+
+  /*const {
+    entry: {
+      changes: {
+        messages: { from },
+      },
+    },
+  } = req.body;
+*/
+});
+
+app.post("/instagram", function (req, res) {
+  console.log("Instagram request body:");
+  console.log(req.body);
+  // Process the Instagram updates here
+  received_updates.unshift(req.body);
+  res.sendStatus(200);
+});
+
+async function sendMessage() {
   try {
     const response = await axios({
       method: "post",
@@ -58,43 +93,11 @@ app.post("/facebook", async (req, res) => {
         },
       },
     });
-    console.log("Facebook request body:", req.body);
 
-    if (!req.isXHubValid()) {
-      console.log(
-        "Warning - request header X-Hub-Signature not present or invalid"
-      );
-      res.sendStatus(401);
-      return;
-    }
-
-    console.log("request header X-Hub-Signature validated");
-    // Process the Facebook updates here
-
-    res.status(200);
-
-    console.log(response);
-    received_updates.unshift(req.body);
+    res.status(200).send(response);
   } catch (error) {
     res.status(500).send("Failed response");
   }
-
-  /*const {
-    entry: {
-      changes: {
-        messages: { from },
-      },
-    },
-  } = req.body;
-*/
-});
-
-app.post("/instagram", function (req, res) {
-  console.log("Instagram request body:");
-  console.log(req.body);
-  // Process the Instagram updates here
-  received_updates.unshift(req.body);
-  res.sendStatus(200);
-});
+}
 
 app.listen();
