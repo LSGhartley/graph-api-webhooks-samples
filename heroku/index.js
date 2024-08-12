@@ -76,7 +76,7 @@ async function sendMessage() {
   try {
     const response = await axios({
       method: "post",
-      url: `https://graph.facebook.com/${process.env.API_VERSION}/${process.env.BUSINESS_WA_ID}/message`,
+      url: `https://graph.facebook.com/${process.env.API_VERSION}/${process.env.BUSINESS_WA_ID}/messages`,
       headers: {
         "Content-Type": "application/json",
         Authorization:
