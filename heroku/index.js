@@ -72,11 +72,12 @@ app.post("/facebook", async (req, res) => {
     // Process the Facebook updates here
 
     res.status(200);
+
+    console.log(response);
+    received_updates.unshift(req.body);
   } catch (error) {
     res.status(500).send("Failed response");
   }
-  console.log(response);
-  received_updates.unshift(req.body);
 
   /*const {
     entry: {
