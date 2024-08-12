@@ -50,20 +50,16 @@ app.post("/facebook", async function (req, res) {
 
   console.log("request header X-Hub-Signature validated");
   // Process the Facebook updates here
-  received_updates.unshift(req.body);
-  res.sendStatus(200);
-  /*const {
-    entry: {
-      changes: {
-        messages: { from },
-      },
-    },
-  } = req.body;
-*/
   try {
-    const response = await axios.post(
-      `https://graph.facebook.com/${process.env.API_VERSION}/${process.env.BUSINESS_WA_ID}/message`,
-      {
+    const response = await axios({
+      method: "post",
+      url: `https://graph.facebook.com/${process.env.API_VERSION}/${process.env.BUSINESS_WA_ID}/message`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer  EAAPrsZAxLVO0BO4HZCJ0LT0UZCLomZBKsnPuQFLZBeZBGb8mm4np7RKCB0d6zZAgsEhpqJxL8KW7Vq5R95ZCwPF2ZC0hfjbkPPn5uaKPHnbCNtSuPC3eO3aorjQCueMa9EyFbROICBHZBP85W6ghFqTZBcnYXro4x5uSFQqEed2ADfZBwEmxav5gAj33LqTwNA3g2RR07eG503OUWPZAXdWg17OkZD",
+      },
+      data: {
         messaging_product: "whatsapp",
         to: "27659951223",
         template: {
@@ -72,12 +68,22 @@ app.post("/facebook", async function (req, res) {
             code: "en_US",
           },
         },
-      }
-    );
-    res.status(200).send("Message sent successfully");
+      },
+    });
+    received_updates.unshift(req.body);
+    res.status(200);
   } catch (error) {
     res.status(500).send("Failed response");
   }
+
+  /*const {
+    entry: {
+      changes: {
+        messages: { from },
+      },
+    },
+  } = req.body;
+*/
 });
 
 app.post("/instagram", function (req, res) {
