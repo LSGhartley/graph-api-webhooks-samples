@@ -90,7 +90,12 @@ async function sendMessage() {
           language: {
             code: "en_US",
           },
-          components: [{ type: "body", parameters: [{ type: "text" }] }],
+          components: [
+            {
+              type: "body",
+              parameters: [{ type: "text", text: "text-string" }],
+            },
+          ],
         },
       },
     });
