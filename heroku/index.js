@@ -70,12 +70,13 @@ app.post("/facebook", async function (req, res) {
         },
       },
     });
-    received_updates.unshift(req.body);
+
     res.status(200);
+    console.log(response);
   } catch (error) {
     res.status(500).send("Failed response");
   }
-
+  received_updates.unshift(req.body);
   /*const {
     entry: {
       changes: {
