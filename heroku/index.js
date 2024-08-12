@@ -52,14 +52,14 @@ app.post("/facebook", async function (req, res) {
   // Process the Facebook updates here
   received_updates.unshift(req.body);
   res.sendStatus(200);
-  const {
+  /*const {
     entry: {
       changes: {
         messages: { from },
       },
     },
   } = req.body;
-
+*/
   try {
     const response = await axios.post(
       `https://graph.facebook.com/${process.env.API_VERSION}/${process.env.BUSINESS_WA_ID}/message`,
