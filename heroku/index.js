@@ -90,6 +90,11 @@ async function sendMessage() {
           language: {
             code: "en_US",
           },
+          components: [
+            {
+              parameters: [{ type: "text" }],
+            },
+          ],
         },
       },
     });
