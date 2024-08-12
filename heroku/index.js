@@ -94,9 +94,9 @@ async function sendMessage() {
       },
     });
 
-    res.status(200).send(response);
+    return response.data;
   } catch (error) {
-    res.status(500).send("Failed response");
+    throw error;
   }
 }
 
