@@ -80,22 +80,15 @@ async function sendMessage() {
       headers: {
         "Content-Type": "application/json",
         Authorization:
-          "Bearer EAAPrsZAxLVO0BO3RiPsCQNc9i8xZChQLGbVwf5fHAybfaLBUlzeHdjC7sJw31R6RWXT1EddZAtg9hAluQO7aCRDrNfX8j68p8ZATvFUJohK6xe2ChBn7Ebk9zdZCOqSs8k70pYhpjqI7fAlE49gmo8eQ0nZAdlTzowwFdxXvvZCpKugQATV7YV65zwjyWHAZBnR7cXkZAlYyNTaYNn7e2qGwZD",
+          "Bearer EAAPrsZAxLVO0BOz1Y3I8yXaykhNf8gTI6sFIk7N13Wged0ij8pyCAK9kOotdv7Lq5ZADjaDIwJ5HQO2pbwGFeUBwdTb5NW1Vf1zrkamNZAEtobbED6XXUxZBK7UzvbY2x7ZCzh7CRM3vy9BzTOS7jYdrtZAywvZChSJpWr795u8FfWglZALj4TZCmbLR5OplZAIZBDmw9ZBHZAErsxJZC6APZAifZBsZD",
       },
       data: {
         messaging_product: "whatsapp",
         to: "27659951223",
-        template: {
-          name: "welcome",
-          language: {
-            code: "en_US",
-          },
-          components: [
-            {
-              type: "body",
-              parameters: [{ type: "text", text: "text-string" }],
-            },
-          ],
+        type: "text",
+        text: {
+          preview_url: "fnb.co.za",
+          body: "Welcome, thank you for connecting with us on WhatsApp🙂.This an FNB approved banking channel, always make sure to check for our green verified tick. How can we help you today?",
         },
       },
     });
