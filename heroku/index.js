@@ -87,7 +87,7 @@ async function sendMessage() {
         to: "27659951223",
         type: "text",
         text: {
-          preview_url: "fnb.co.za",
+          preview_url: true,
           body: "Welcome, thank you for connecting with us on WhatsApp🙂.This an FNB approved banking channel, always make sure to check for our green verified tick. How can we help you today?",
         },
       },
