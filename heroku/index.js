@@ -51,8 +51,18 @@ app.post("/facebook", async (req, res) => {
   console.log("request header X-Hub-Signature validated");
   // Process the Facebook updates here
   res.status(200);
+  //Save notification to the DB
+  const isOutboundNotification =
+    req.body?.entry?.[0]?.changes?.[0]?.value?.status !== undefined;
+
+  if (isOutboundNotification) {
+    console.log("Message delivered/sent/read by customer");
+  } else {
+    console.log("It is a message notification");
+  }
   received_updates.unshift(req.body);
-  sendMessage();
+  //Send Message to MicroService
+  //sendMessage();
 
   /*const {
     entry: {
