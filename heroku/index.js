@@ -69,7 +69,7 @@ const notificationSchema = new mongoose.Schema({
                     type: { type: String },
                   },
                 },
-                id: { type: UUID, default: null },
+                id: { type: String, default: null },
                 pricing: {
                   billable: { type: Boolean, default: null },
                   category: { type: String, default: null },
@@ -98,6 +98,15 @@ const notificationSchema = new mongoose.Schema({
                 text: {
                   body: { type: String, default: null },
                 },
+                errors: [
+                  {
+                    code: { type: Number, default: null },
+                    title: { type: String, default: null },
+                    message: { type: String, default: null },
+                    error_data: { details: { type: String, default: null } },
+                    required: false,
+                  },
+                ],
                 system: {
                   body: { type: String, default: null },
                   identity: { type: String, default: null },
