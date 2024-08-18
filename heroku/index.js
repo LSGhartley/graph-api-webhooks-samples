@@ -19,11 +19,7 @@ app.listen(app.get("port"));
 //Connect MongoDB
 mongoose.connect(
   process.env.DATABASE_URL ||
-    "mongodb+srv://lesegohartley:LWhMLtyDme3xVktI@webhooks0.zvimz.mongodb.net/?retryWrites=true&w=majority&appName=webhooks0",
-  {
-    userNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
+    "mongodb+srv://lesegohartley:LWhMLtyDme3xVktI@webhooks0.zvimz.mongodb.net/?retryWrites=true&w=majority&appName=webhooks0"
 );
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
