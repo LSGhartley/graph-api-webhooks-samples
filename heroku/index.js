@@ -19,7 +19,7 @@ app.listen(app.get("port"));
 
 //Connect MongoDB
 const mongoURI = process.env.DATABASE_URL;
-mongoose.connect(mongoURI);
+await mongoose.connect(mongoURI);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
 db.once("open", () => {
