@@ -46,7 +46,6 @@ const notificationSchema = new mongoose.Schema({
                 wa_id: { type: String, default: null },
                 user_id: { type: String, default: null },
                 profile: { name: { type: String, default: null } },
-                required: false,
               },
             ],
             errors: [
@@ -55,7 +54,6 @@ const notificationSchema = new mongoose.Schema({
                 title: { type: String, default: null },
                 message: { type: String, default: null },
                 error_data: { details: { type: String, default: null } },
-                required: false,
               },
             ],
             statuses: [
@@ -83,7 +81,6 @@ const notificationSchema = new mongoose.Schema({
                     title: { type: String, default: null },
                     message: { type: String, default: null },
                     error_data: { details: { type: String, default: null } },
-                    required: false,
                   },
                 ],
               },
@@ -103,7 +100,6 @@ const notificationSchema = new mongoose.Schema({
                     title: { type: String, default: null },
                     message: { type: String, default: null },
                     error_data: { details: { type: String, default: null } },
-                    required: false,
                   },
                 ],
                 system: {
