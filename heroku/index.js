@@ -238,7 +238,7 @@ app.get(["/facebook", "/instagram"], function (req, res) {
   }
 });
 
-app.post("/facebook", async (req, res) => {
+app.post("/facebook", (req, res) => {
   console.log("Facebook request body:", req.body);
 
   if (!req.isXHubValid()) {
@@ -259,7 +259,7 @@ app.post("/facebook", async (req, res) => {
     console.log("It is a message notification");
   }
   const newNotification = new Notification(req.body); // Assuming req.body contains user data
-  const savedNotification = await newNotification.save();
+  const savedNotification = newNotification.save();
   res.status(200);
   //Save notification to the DB
   received_updates.unshift(req.body);
