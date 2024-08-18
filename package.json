@@ -10,7 +10,8 @@
     "axios": "^1.7.3",
     "body-parser": "~1.15.0",
     "express": "~4.13.3",
-    "express-x-hub": "^1.0.4"
+    "express-x-hub": "^1.0.4",
+    "mongoose": "^8.5.3"
   },
   "engines": {
     "node": "v18.18.0"
