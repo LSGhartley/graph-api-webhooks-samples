@@ -19,7 +19,8 @@ app.listen(app.get("port"));
 
 //Connect MongoDB
 const mongoURI = process.env.DATABASE_URL;
-await mongoose.connect(mongoURI);
+console.log("connecting with: ", mongoURI);
+mongoose.connect(mongoURI);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
 db.once("open", () => {
@@ -217,17 +218,6 @@ var received_updates = [];
 
 app.get("/", function (req, res) {
   console.log(req);
-  mongoose.connect(process.env.DATABASE_URL, {
-    userNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  const db = mongoose.connection;
-  db.on("error", console.error.bind(console, "MongoDB connection error"));
-  let mon = "DB not working";
-  db.once("open", () => {
-    console.log("connected to MongoDB");
-    mon = "DB workinhg";
-  });
   res.send(
     "<h1>" +
       mon +
