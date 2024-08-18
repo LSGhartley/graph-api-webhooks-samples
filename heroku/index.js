@@ -15,12 +15,12 @@ const { default: mongoose } = require("mongoose");
 
 app.set("port", process.env.PORT || 5000);
 app.listen(app.get("port"));
+
 //Connect MongoDB
 mongoose.connect(process.env.DATABASE_URL, {
   userNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
 db.once("open", () => {
@@ -222,7 +222,24 @@ var received_updates = [];
 
 app.get("/", function (req, res) {
   console.log(req);
-  res.send("<pre>" + JSON.stringify(received_updates, null, 2) + "</pre>");
+  mongoose.connect(process.env.DATABASE_URL, {
+    userNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  const db = mongoose.connection;
+  db.on("error", console.error.bind(console, "MongoDB connection error"));
+  let mon = "DB not working";
+  db.once("open", () => {
+    console.log("connected to MongoDB");
+    mon = "DB workinhg";
+  });
+  res.send(
+    "<h1>" +
+      mon +
+      "<h1><br><pre>" +
+      JSON.stringify(received_updates, null, 2) +
+      "</pre>"
+  );
 });
 
 app.get(["/facebook", "/instagram"], function (req, res) {
