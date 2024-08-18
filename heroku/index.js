@@ -17,9 +17,8 @@ app.set("port", process.env.PORT || 5000);
 app.listen(app.get("port"));
 
 //Connect MongoDB
-mongoose.connect(
-  "mongodb+srv://lesegohartley:LWhMLtyDme3xVktI@webhooks0.zvimz.mongodb.net/?retryWrites=true&w=majority&appName=webhooks0"
-);
+const mongoURI = process.env.DATABASE_URL;
+mongoose.connect(mongoURI);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
 db.once("open", () => {
