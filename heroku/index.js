@@ -41,7 +41,6 @@ const notificationSchema = new mongoose.Schema({
               display_phone_number: { type: String },
               phone_number_id: { type: String },
             },
-
             contacts: [
               {
                 wa_id: { type: String, default: null },
@@ -77,7 +76,7 @@ const notificationSchema = new mongoose.Schema({
                 },
                 recipient_id: { type: String, default: null },
                 status: { type: String, default: null },
-                timestamp: { type: Date, default: null },
+                timestamp: { type: String, default: null },
                 errors: [
                   {
                     code: { type: Number, default: null },
@@ -93,7 +92,7 @@ const notificationSchema = new mongoose.Schema({
               {
                 from: { type: String, default: null },
                 id: { type: String, default: null },
-                timestamp: { type: Date, default: null },
+                timestamp: { type: String, default: null },
                 type: { type: String, default: null },
                 text: {
                   body: { type: String, default: null },
@@ -204,6 +203,7 @@ const notificationSchema = new mongoose.Schema({
               },
             ],
           },
+          field: { type: String },
         },
       ],
     },
