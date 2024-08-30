@@ -249,7 +249,7 @@ app.post("/facebook", async (req, res) => {
     req.body?.entry?.[0]?.changes?.[0]?.value?.statuses !== undefined;
 
   if (isOutboundNotification) {
-    console.log("Message delivered/sent/read by customer");
+    console.log("Message delivered to customer");
   } else {
     console.log("It is a message notification");
   }
