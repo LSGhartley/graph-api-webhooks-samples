@@ -253,12 +253,14 @@ app.post("/facebook", async (req, res) => {
   } else {
     console.log("It is a message notification");
   }
-  const newNotification = new Notification(req.body); // Assuming req.body contains user data
 
-  const savedNotification = await newNotification.save();
 
   res.status(200);
   //Save notification to the DB
+  const newNotification = new Notification(req.body); // Assuming req.body contains user data
+
+  const savedNotification = await newNotification.save();
+  
   received_updates.unshift(req.body);
 
   //Send Message to MicroService
