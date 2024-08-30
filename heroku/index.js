@@ -218,13 +218,7 @@ var received_updates = [];
 
 app.get("/", function (req, res) {
   console.log(req);
-  res.send(
-    "<h1>" +
-      mon +
-      "<h1><br><pre>" +
-      JSON.stringify(received_updates, null, 2) +
-      "</pre>"
-  );
+  res.send("<pre>" + JSON.stringify(received_updates, null, 2) + "</pre>");
 });
 
 app.get(["/facebook", "/instagram"], function (req, res) {
@@ -238,7 +232,7 @@ app.get(["/facebook", "/instagram"], function (req, res) {
   }
 });
 
-app.post("/facebook", (req, res) => {
+app.post("/facebook", async (req, res) => {
   console.log("Facebook request body:", req.body);
 
   if (!req.isXHubValid()) {
@@ -253,13 +247,16 @@ app.post("/facebook", (req, res) => {
   // Process the Facebook updates here
   const isOutboundNotification =
     req.body?.entry?.[0]?.changes?.[0]?.value?.statuses !== undefined;
+
   if (isOutboundNotification) {
     console.log("Message delivered/sent/read by customer");
   } else {
     console.log("It is a message notification");
   }
   const newNotification = new Notification(req.body); // Assuming req.body contains user data
-  const savedNotification = newNotification.save();
+
+  const savedNotification = await newNotification.save();
+
   res.status(200);
   //Save notification to the DB
   received_updates.unshift(req.body);
